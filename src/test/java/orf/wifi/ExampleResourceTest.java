@@ -14,10 +14,22 @@ public class ExampleResourceTest {
     @Test
     public void testHelloEndpoint() {
         given()
-                .when().get("/helloDemo")
+                .when().get("/reverse/verkehrt")
                 .then()
                 .statusCode(200)
-                .body(is("Hello RESTEasy"));
+                .body(is("trhekrev"));
     }
 
+    @Test
+    public void testAnagramEndpoint() {
+        given()
+                .when().get("/anacheck/bob/obb")
+                .then()
+                .statusCode(200).body(is("true"));
+
+        given()
+                .when().get("/anacheck/bob/oabb")
+                .then()
+                .statusCode(200).body(is("false"));
+    }
 }
