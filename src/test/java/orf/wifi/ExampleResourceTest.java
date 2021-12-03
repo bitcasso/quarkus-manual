@@ -12,15 +12,6 @@ import static org.hamcrest.CoreMatchers.is;
 public class ExampleResourceTest {
 
     @Test
-    public void testHelloEndpoint() {
-        given()
-                .when().get("/reverse/verkehrt")
-                .then()
-                .statusCode(200)
-                .body(is("trhekrev"));
-    }
-
-    @Test
     public void testAnagramEndpoint() {
         given()
                 .when().get("/anacheck/bob/obb")

@@ -15,6 +15,8 @@ public class DemoResource {
 
 @Inject
 DemoService demoService;
+@Inject
+DemoServiceDb demoServiceDb;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -23,10 +25,10 @@ DemoService demoService;
     }
 
     @GET
-    @Path(value = "reverse/{input}")
+    @Path(value = "persist/{input}")
     public String greeting(@PathParam String input){
         Log.info("reversing input");
-        return demoService.reverse(input);
+        return demoServiceDb.persistMessage(input);
     }
     @GET
     @Path(value = "anacheck/{input}/{testinput}")
