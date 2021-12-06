@@ -27,7 +27,7 @@ DemoServiceDb demoServiceDb;
     @GET
     @Path(value = "persist/{input}")
     public String greeting(@PathParam String input){
-        Log.info("reversing input");
+        Log.info("persisting input");
         return demoServiceDb.persistMessage(input);
     }
     @GET
