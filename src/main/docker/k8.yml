@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quarkus-service
+  name: matthias-topfen
   labels:
-    app: quarkus-service
+    app: matthias-topfen
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: quarkus-service
+      app: matthias-topfen
   template:
     metadata:
       labels:
-        app: quarkus-service
+        app: matthias-topfen
         io.kompose.network/quarkus: "true"
     spec:
       containers:
-        - name: quarkus-service
+        - name: matthias-topfen
           image: quarkus/e8v6d9d7/matthias-demo-jvm:1.0.0
           imagePullPolicy: Never
           ports:
@@ -43,9 +43,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: quarkus-service
+  name: matthias-topfen
   labels:
-    app: quarkus-service
+    app: matthias-topfen
 spec:
   type: LoadBalancer  # NodePort
   ports:
@@ -54,4 +54,4 @@ spec:
       targetPort: 8080
       nodePort: 30111  # must be between 30000 and 32767
   selector:
-    app: quarkus-service
+    app: matthias-topfen
