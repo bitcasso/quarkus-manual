@@ -1,7 +1,7 @@
 version: "3.5"
 
 services:
-  matthias-topfen:
+  quarkus-service:
     build:
       context: .
       dockerfile: src/main/docker/Dockerfile.jvm
