@@ -3,39 +3,38 @@ kind: Deployment
 metadata:
   name: matthias-topfen
   labels:
-    app: suchan-topfen-service
+    app: matthias-topfen-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: suchan-topfen-service
+      app: matthias-topfen-service
   template:
     metadata:
       labels:
-        app: suchan-topfen-service
+        app: matthias-topfen-service
         io.kompose.network/quarkus: "true"
     spec:
       containers:
         - name: matthias-topfen
-          image: quarkus/e8v6d9d7/matthias-demo-jvm:1.0.0
-          imagePullPolicy: Never
+          image: public.ecr.aws/e8v6d9d7/matthias-demo-jvm:1.1.1 
           ports:
             - containerPort: 8080
           env:
             - name: USER_NAME
               valueFrom:
                 secretKeyRef:
-                  name: quarkus-db-secret
+                  name: matthias-topfen-db-secret
                   key: postgres-user
             - name: USER_PWD
               valueFrom:
                 secretKeyRef:
-                  name: quarkus-db-secret
+                  name: matthias-topfen-db-secret
                   key: postgres-password
             - name: DB_URL
               valueFrom:
                 configMapKeyRef:
-                  name: matthias-topfen-demo-config
+                  name: matthias-topfen-config
                   key: quarkus-demo-url
           #- name: QUARKUS_DATASOURCE_JDBC_URL
           #   value: jdbc:postgresql://quarkus-db:5432/simplechat
@@ -43,9 +42,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: suchan-topfen-service
+  name: matthias-topfen-service
   labels:
-    app: suchan-topfen-service
+    app: matthias-topfen-service
 spec:
   type: LoadBalancer  # NodePort
   ports:
@@ -54,4 +53,4 @@ spec:
       targetPort: 8080
       nodePort: 30111  # must be between 30000 and 32767
   selector:
-    app: suchan-topfen-service
+    app: matthias-topfen-service
