@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: matthias-topfen
-          image: public.ecr.aws/e8v6d9d7/matthias-demo-jvm:1.1.1 
+          image: public.ecr.aws/e8v6d9d7/matthias-demo-jvm:1.1.2
           ports:
             - containerPort: 8080
           env:
