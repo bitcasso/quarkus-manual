@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: matthias-topfen-demo-config
 data:
-  quarkus-demo-url: quarkus-db
+  quarkus-demo-url: matthias-topfen-db
